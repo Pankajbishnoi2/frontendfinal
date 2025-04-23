@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Management - Dashboard</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <style>
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #6dd5ed, #2193b0);
+      color: #333;
+    }
+
+    nav {
+      background-color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    nav .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    nav .nav-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav .nav-links a:hover {
+      color: #007bff;
+    }
+
+    header {
+      background-color: #ffffffcc;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .container {
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .heroimg{
+    width: 100%;
+    position: relative;
+    background-color: #007bff;
+    }
+  
+ 
+
+.heroimg img {
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white;
+  text-align: center;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.hero-content button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  background-color: #1e2e22;
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.hero-content button:hover {
+  background-color: #606461;
+  padding: 10px 14px;
+}
+
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #555;
+    }
+    /**/
+    .info-section {
+      background: white;
+      padding: 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 50px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .info-section img {
+      width: 300px;
+      border-radius: 10px;
+    }
+
+    .info-text {
+      max-width: 600px;
+    }
+
+    .info-text h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .info-text p {
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .contact-section {
+      text-align: center;
+      padding: 40px 20px;
+      color: white;
+      background: #1e2e22;
+    }
+
+    .contact-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .contact-section p {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+    #tt{
+      text-decoration: none;
+      color: black;
+    }
+    .logout-btn {
+  margin-left: 20px;
+  padding: 8px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #cc0000;
+}
+.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+.dark-mode nav {
+  background-color: #1f1f1f;
+}
+
+.dark-mode .nav-links a {
+  color: #f0f0f0;
+}
+
+.dark-mode .nav-links a:hover {
+  color: #90caf9;
+}
+
+.dark-mode header {
+  background-color: #484848;
+  color: white;
+}
+
+.dark-mode .card {
+  background-color: #484848;
+  color: #eee;
+  border: #eee 1px solid;
+  box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+}
+
+.dark-mode .card p {
+  color: #eee;
+}
+
+.dark-mode .info-section {
+  background-color: #1e1e1e;
+  color: #eee;
+  border: #eee 1px solid;
+}
+.dark-mode .info-section .info-text p {
+  color: #eee;
+
+}
+
+.dark-mode .contact-section {
+  background-color: #484848;
+  border: #eee 1px solid;
+}
+
+.dark-mode .logout-btn {
+  background-color: #ff6666;
+}
+
+.dark-mode .logout-btn:hover {
+  background-color: #cc3333;
+}
+
+.dark-mode button {
+  background-color: #444;
+  color: #fff;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">StockMgmt</div>
+    
+    
+    <div class="nav-links">
+      
+      
+      
+      <a href="logout.php" class="logout-btn">Logout</a>
+      <a href="temp.php" >feedback</a>
+      
+      
+      
+      <a href="aboutus.html">About Us</a>
+      <button id="darkToggle" style="padding:12px ; border-radius: 40%; border: none; background: #404040; color: white; cursor: pointer; margin-left: 10px;">
+        🌙 
+      </button>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Stock Management Dashboard</h1>
+  </header>
+
+  <div class="heroimg">
+    
+    <img id="mainimage" src="img/img9.png" alt="">
+
+    <div class="hero-content" id="heroContent">
+      <h2 id="htemp" >Welcome to Stock Management</h2>
+      <button id="strbtn">Get Started</button>
+    </div>
+
+  </div>
+  
+  <div class="container">
+    <a href="home.php" id="tt">
+    <div class="card">
+      <h3>Shops Inventory</h3>
+      <p>View total stock levels of different branches.</p>
+    </div>
+  </a>
+
+      
+
+    <a href="supplier.html" id="tt">
+      <div class="card">
+        <h3>Supplier Info</h3>
+        <p>Access details and contacts of all your suppliers.</p>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="info-section">
+    <img src="img/shopimg5.png" alt="Stock Image">
+    <div class="info-text">
+      <h2>About Our Stock Management System</h2>
+      <p>
+        Our system is designed to streamline inventory tracking, sales analytics, and supplier communications.
+        With a user-friendly dashboard and real-time updates, managing stock has never been easier or more efficient.
+      </p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>Contact Us</h2>
+    <p>Email: support@stockmgmt.com</p>
+    <p>Phone: +1 234 567 890</p>
+    <p>Address: Rishit pvt. ltd. , Delhi</p>
+  </div>
+  
+
+
+  <script>
+    $(document).ready(function(){
+      $("#strbtn").click(function(){
+        $("#mainimage").slideToggle(1500)
+        $("#htemp").hide(1000)
+        $("#strbtn").hide(1000)
+      })
+    })
+
+
+   
+if (localStorage.getItem("theme") === "dark") {
+  $("body").addClass("dark-mode");
+  $("#darkToggle").html("☀️");
+}
+
+$("#darkToggle").click(function () {
+  $("body").toggleClass("dark-mode");
+
+  //  user ki  preference save ki
+  if ($("body").hasClass("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+    $("#darkToggle").html("☀️");
+  } else {
+    localStorage.setItem("theme", "light");
+    $(this).html("🌙");
+  }
+});
+
+  </script>
+
+</body>
+</html>
